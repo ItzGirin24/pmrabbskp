@@ -1,31 +1,56 @@
 {
   "version": 2,
+  "name": "pmrabbskp",
   "builds": [
     {
-      "src": "*.html",
+      "src": "admin.html",
       "use": "@vercel/static"
     },
     {
-      "src": "*.css",
+      "src": "voting.html",
       "use": "@vercel/static"
     },
     {
-      "src": "*.js",
+      "src": "style.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "LOGO PMI.jpg",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "foto ghazi.jpg",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "foto rangga.jpg",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/",
-      "dest": "-"
-    },
-    {
-      "src": "/admin",
       "dest": "/admin.html"
     },
     {
       "src": "/voting",
       "dest": "/voting.html"
+    },
+    {
+      "src": "/style.css",
+      "dest": "/style.css"
+    },
+    {
+      "src": "/LOGO%20PMI.jpg",
+      "dest": "/LOGO PMI.jpg"
+    },
+    {
+      "src": "/foto%20ghazi.jpg",
+      "dest": "/foto ghazi.jpg"
+    },
+    {
+      "src": "/foto%20rangga.jpg",
+      "dest": "/foto rangga.jpg"
     }
   ]
 }
