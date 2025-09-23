@@ -10,7 +10,7 @@
     { "src": "foto-rangga.jpg", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/", "dest": "/admin.html" },
+    { "src": "/admin", "dest": "/admin.html" },
     { "src": "/voting", "dest": "/voting.html" }
   ]
 }
