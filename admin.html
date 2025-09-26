@@ -1055,3 +1055,29 @@
     </div>
 </body>
 </html>
+
+<script>
+    // 🚨 Cek login
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+
+    // 🚪 Logout function
+    function logout() {
+      localStorage.removeItem("isLoggedIn");
+      window.location.href = "login.html";
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Admin Dashboard</h1>
+    <button onclick="logout()">Logout</button>
+  </header>
+
+  <main>
+    <p>Selamat datang di halaman admin. 🎉</p>
+    <!-- konten admin di sini -->
+  </main>
+</body>
+</html>
