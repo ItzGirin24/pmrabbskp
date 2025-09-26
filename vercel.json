@@ -1,16 +1,20 @@
+
 {
-  "version": 2,
-  "name": "pmrabbskp",
-  "builds": [
-    { "src": "admin.html", "use": "@vercel/static" },
-    { "src": "voting.html", "use": "@vercel/static" },
-    { "src": "style.css", "use": "@vercel/static" },
-    { "src": "logo-pmi.jpg", "use": "@vercel/static" },
-    { "src": "foto-ghazi.jpg", "use": "@vercel/static" },
-    { "src": "foto-rangga.jpg", "use": "@vercel/static" }
-  ],
-  "routes": [
-    { "src": "/admin", "dest": "/admin.html" },
-    { "src": "/voting", "dest": "/voting.html" }
-  ]
-}
+    "version": 2,
+    "name": "pmrabbskp",
+    "builds": [
+      { "src": "admin.html", "use": "@vercel/static" },
+      { "src": "voting.html", "use": "@vercel/static" },
+      { "src": "login.html", "use": "@vercel/static" },
+      { "src": "style.css", "use": "@vercel/static" },
+      { "src": "logo-pmi.jpg", "use": "@vercel/static" },
+      { "src": "foto-ghazi.jpg", "use": "@vercel/static" },
+      { "src": "foto-rangga.jpg", "use": "@vercel/static" }
+    ],
+    "routes": [
+      { "src": "/admin", "dest": "/admin.html" },
+      { "src": "/voting", "dest": "/voting.html" }
+      { "src": "/login", "dest": "/login.html" }
+    ]
+  }
+  

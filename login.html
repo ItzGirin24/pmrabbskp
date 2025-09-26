@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .auth-card {
+      background: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      width: 360px;
+      text-align: center;
+    }
+
+    .auth-icon {
+      background: #f87171;
+      color: white;
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 28px;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 10px rgba(248,113,113,0.4);
+    }
+
+    h2 {
+      margin: 0;
+      color: #111827;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .auth-description {
+      color: #6b7280;
+      font-size: 14px;
+      margin: 6px 0 20px;
+    }
+
+    .auth-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      font-size: 15px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+      transition: all 0.3s;
+    }
+
+    .auth-input:focus {
+      border-color: #f87171;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(248,113,113,0.3);
+    }
+
+    .auth-btn {
+      width: 100%;
+      padding: 14px;
+      background: #f87171;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .auth-btn i {
+      margin-right: 8px;
+    }
+
+    .auth-btn:hover {
+      background: #ef4444;
+    }
+
+    .auth-info {
+      margin-top: 16px;
+      color: #6b7280;
+      font-size: 13px;
+    }
+
+    .auth-info i {
+      color: #f87171;
+      margin-right: 6px;
+    }
+
+    #errorMsg {
+      color: #ef4444;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-card">
+    <div class="auth-icon">
+      <i class="fas fa-user-shield"></i>
+    </div>
+    <h2>Login Admin</h2>
+    <p class="auth-description">Masuk Dashboard </p>
+
+    <form id="loginForm">
+      <input type="email" id="email" class="auth-input" placeholder="Email" required>
+      <input type="password" id="password" class="auth-input" placeholder="Password" required>
+      <button type="submit" class="auth-btn">
+        <i class="fas fa-sign-in-alt"></i> Login
+      </button>
+    </form>
+
+    <p id="errorMsg"></p>
+
+    <div class="auth-info">
+      <i class="fas fa-info-circle"></i>
+      Hanya untuk admin terdaftar
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const errorMsg = document.getElementById("errorMsg");
+
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      // Static akun admin
+      const adminEmail = "pmrabbskp@admin.app";
+      const adminPass = "pmrabbskp2025";
+
+      if (email === adminEmail && password === adminPass) {
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "admin.html";
+      } else {
+        errorMsg.textContent = "❌ Email atau password salah!";
+      }
+    });
+  </script>
+</body>
+</html>
