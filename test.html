@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Role Firebase</title>
+  <script src="https://kit.fontawesome.com/8fefb4c1a3.js" crossorigin="anonymous"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2rem; background: #f5f5f5; }
+    #loginBtn { padding: 10px 20px; border: none; background: #4285F4; color: white;
+                font-size: 16px; border-radius: 6px; cursor: pointer; }
+    .card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 3px 10px rgba(0,0,0,0.1); 
+            max-width: 450px; margin-top: 1rem; display:none; }
+    .user-profile { display: flex; align-items: center; gap: 1rem; }
+    .user-avatar-container img { border-radius: 50%; }
+    .user-role { margin-top: 0.25rem; color: #d32f2f; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
+    .controls { margin-top: 1rem; }
+    .controls select { padding: 5px; font-size: 14px; }
+    .user-uid { font-size: 12px; color: #666; }
+  </style>
+</head>
+<body>
+  <h2>Halaman Test Role Firebase</h2>
+
+  <button id="loginBtn">Login dengan Google</button>
+
+  <div id="profileCard" class="card">
+    <div class="user-profile">
+      <div class="user-avatar-container">
+        <img id="userAvatar" src="https://via.placeholder.com/60" alt="Avatar">
+      </div>
+      <div class="user-details">
+        <div id="userName" style="font-weight: bold;"></div>
+        <div id="userEmail" style="font-size: 14px; color: gray;"></div>
+        <div id="userUid" class="user-uid"></div>
+        <div class="user-role" id="userRole">
+          <i class="fas fa-user"></i> Role belum ditentukan
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <label for="roleSelect">Ubah Role: </label>
+      <select id="roleSelect">
+        <option value="siswa">Siswa</option>
+        <option value="guru">Guru</option>
+        <option value="unknown" selected>Tidak diketahui</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } 
+      from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+
+    // 🔹 Ganti dengan konfigurasi Firebase projectmu
+const firebaseConfig = {
+  apiKey: "AIzaSyBQtlCxwhIXyKxuW5FRyRqOElCz-2_EPjs",
+  authDomain: "redcross-76c90.firebaseapp.com",
+  projectId: "redcross-76c90",
+  storageBucket: "redcross-76c90.firebasestorage.app",
+  messagingSenderId: "720435310423",
+  appId: "1:720435310423:web:058f8f14743135da62d812",
+  measurementId: "G-1N1LDV3R95"
+};
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const loginBtn = document.getElementById("loginBtn");
+    const profileCard = document.getElementById("profileCard");
+    const userName = document.getElementById("userName");
+    const userEmail = document.getElementById("userEmail");
+    const userUid = document.getElementById("userUid");
+    const userAvatar = document.getElementById("userAvatar");
+    const userRoleElement = document.getElementById("userRole");
+    const roleSelect = document.getElementById("roleSelect");
+
+    function renderUserRole(role) {
+      if (role === "siswa") {
+        userRoleElement.innerHTML = `<i class="fas fa-user-graduate"></i> Siswa SMA IT Abu Bakar`;
+      } else if (role === "guru") {
+        userRoleElement.innerHTML = `<i class="fas fa-chalkboard-teacher"></i> Guru SMA IT Abu Bakar`;
+      } else {
+        userRoleElement.innerHTML = `<i class="fas fa-user"></i> Role belum ditentukan`;
+      }
+    }
+
+    loginBtn.addEventListener("click", async () => {
+      try {
+        await signInWithPopup(auth, provider);
+      } catch (err) {
+        console.error("Login gagal:", err);
+      }
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        loginBtn.style.display = "none";
+        profileCard.style.display = "block";
+
+        userName.textContent = user.displayName;
+        userEmail.textContent = user.email;
+        userUid.textContent = `UID: ${user.uid}`;
+        userAvatar.src = user.photoURL;
+
+        renderUserRole("unknown");
+      } else {
+        loginBtn.style.display = "block";
+        profileCard.style.display = "none";
+      }
+    });
+
+    roleSelect.addEventListener("change", (e) => {
+      renderUserRole(e.target.value);
+    });
+  </script>
+</body>
+</html>
+```
