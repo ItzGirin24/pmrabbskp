@@ -1,34 +1,100 @@
+### 🔹 admin.html
+
 ```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Voting Page</title>
-  <script src="https://kit.fontawesome.com/8fefb4c1a3.js" crossorigin="anonymous"></script>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 2rem; background: #f5f5f5; }
-    .card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 3px 10px rgba(0,0,0,0.1); 
-            max-width: 500px; margin: auto; }
-    .user-role { margin-top: 0.5rem; color: #1976d2; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
 </head>
 <body>
-  <h2>Voting Page</h2>
+  <h2>Panel Admin - Atur Role</h2>
+  <input type="text" id="uidInput" placeholder="Masukkan UID pengguna">
+  <button id="searchBtn">Cari User</button>
 
-  <div id="profileCard" class="card" style="display:none;">
-    <div id="userName"></div>
-    <div id="userEmail"></div>
-    <div class="user-role" id="userRole"></div>
-  </div>
+  <h3>Detail Pengguna</h3>
+  <p id="userName">Nama: -</p>
+  <p id="userEmail">Email: -</p>
+  <p id="userRole">Role: -</p>
 
-  <!-- Firebase SDK -->
+  <h3>Ubah Role</h3>
+  <button onclick="updateRole('Siswa')">Jadikan Siswa</button>
+  <button onclick="updateRole('Guru')">Jadikan Guru</button>
+
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } 
-      from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
-    import { getFirestore, doc, getDoc, setDoc } 
-      from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+    const firebaseConfig = {
+      apiKey: "API_KEY_MU",
+      authDomain: "PROJECT_ID.firebaseapp.com",
+      projectId: "PROJECT_ID",
+      storageBucket: "PROJECT_ID.appspot.com",
+      messagingSenderId: "SENDER_ID",
+      appId: "APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const uidInput = document.getElementById("uidInput");
+    const userName = document.getElementById("userName");
+    const userEmail = document.getElementById("userEmail");
+    const userRole = document.getElementById("userRole");
+
+    document.getElementById("searchBtn").addEventListener("click", async () => {
+      const uid = uidInput.value.trim();
+      if (!uid) return alert("Masukkan UID dulu!");
+      const ref = doc(db, "users", uid);
+      const snap = await getDoc(ref);
+      if (snap.exists()) {
+        const data = snap.data();
+        userName.textContent = `Nama: ${data.name || "-"}`;
+        userEmail.textContent = `Email: ${data.email || "-"}`;
+        userRole.textContent = `Role: ${data.role || "unknown"}`;
+      } else {
+        userName.textContent = "Nama: (tidak ditemukan)";
+        userEmail.textContent = "Email: (tidak ditemukan)";
+        userRole.textContent = "Role: unknown";
+      }
+    });
+
+    async function updateRole(newRole) {
+      const uid = uidInput.value.trim();
+      if (!uid) return alert("Masukkan UID dulu!");
+      const ref = doc(db, "users", uid);
+      await setDoc(ref, { role: newRole }, { merge: true });
+      userRole.textContent = `Role: ${newRole}`;
+      alert(`Role berhasil diubah menjadi ${newRole}`);
+    }
+  </script>
+</body>
+</html>
+```
+
+---
+
+### 🔹 voting.html
+
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voting</title>
+</head>
+<body>
+  <h2>Halaman Voting</h2>
+  <button id="loginBtn">Login dengan Google</button>
+  <p id="userLabel">Role: belum login</p>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    
 const firebaseConfig = {
   apiKey: "AIzaSyBQtlCxwhIXyKxuW5FRyRqOElCz-2_EPjs",
   authDomain: "redcross-76c90.firebaseapp.com",
@@ -42,46 +108,39 @@ const firebaseConfig = {
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
     const db = getFirestore(app);
+    const provider = new GoogleAuthProvider();
 
-    const profileCard = document.getElementById("profileCard");
-    const userName = document.getElementById("userName");
-    const userEmail = document.getElementById("userEmail");
-    const userRoleElement = document.getElementById("userRole");
+    const userLabel = document.getElementById("userLabel");
+    const loginBtn = document.getElementById("loginBtn");
 
-    function renderUserRole(role) {
-      if (role === "siswa") {
-        userRoleElement.innerHTML = `<i class="fas fa-user-graduate"></i> Siswa SMA IT Abu Bakar`;
-      } else if (role === "guru") {
-        userRoleElement.innerHTML = `<i class="fas fa-chalkboard-teacher"></i> Guru SMA IT Abu Bakar`;
-      } else {
-        userRoleElement.innerHTML = `<i class="fas fa-user"></i> Role belum ditentukan`;
+    loginBtn.addEventListener("click", async () => {
+      try {
+        await signInWithPopup(auth, provider);
+      } catch (err) {
+        alert("Login gagal: " + err.message);
       }
-    }
-
-    async function saveUserData(user) {
-      const userRef = doc(db, "users", user.uid);
-      await setDoc(userRef, {
-        name: user.displayName,
-        email: user.email,
-        photoURL: user.photoURL,
-      }, { merge: true });
-    }
+    });
 
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        profileCard.style.display = "block";
-        userName.textContent = `Nama: ${user.displayName}`;
-        userEmail.textContent = `Email: ${user.email}`;
-
-        await saveUserData(user);
-
-        const snap = await getDoc(doc(db, "users", user.uid));
-        const role = snap.exists() ? (snap.data().role || "unknown") : "unknown";
-        renderUserRole(role);
+        // cek apakah user sudah ada di Firestore
+        const ref = doc(db, "users", user.uid);
+        const snap = await getDoc(ref);
+        if (!snap.exists()) {
+          // kalau belum ada → simpan data pertama kali
+          await setDoc(ref, {
+            name: user.displayName,
+            email: user.email,
+            role: "unknown"
+          });
+          userLabel.textContent = "Role: unknown";
+        } else {
+          const data = snap.data();
+          userLabel.textContent = `Role: ${data.role || "unknown"}`;
+        }
       } else {
-        await signInWithPopup(auth, provider);
+        userLabel.textContent = "Role: belum login";
       }
     });
   </script>
