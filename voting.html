@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    </head>
+<body>
     <!-- Firebase SDK -->
     <script type="module">
         // Import the functions you need from the SDKs you need
@@ -119,23 +120,11 @@
                         <div class="candidate-badge">
                             <i class="fas fa-user-md"></i>
                         </div>
-                   ```css
-.candidate-image-container {
-  width: 100%;
-  height: 260px; /* tambah tinggi biar foto lebih luas */
-  overflow: hidden;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-
-.candidate-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* supaya foto tetap proporsional dan memenuhi container */
-  object-position: center top; /* bisa diganti 'center' atau 'top' sesuai framing */
-}
-```
-
+                        <div class="candidate-image-container">
+                            <img src="${candidate.image}" alt="${candidate.name}" class="candidate-image">
+                            <div class="candidate-overlay">
+                                <i class="fas fa-heart-pulse"></i>
+                            </div>
                         </div>
                         <div class="candidate-content">
                             <div class="candidate-name">${candidate.name}</div>
@@ -636,7 +625,7 @@
             </div>
         </main>
 
-        <!-- Footer -->
+             <!-- Footer -->
         <footer class="medical-footer">
             <div class="footer-content">
                 <div class="footer-logo">
@@ -656,26 +645,28 @@
             </div>
         </footer>
     </div>
+
+    <!-- ⬇️ TARUH SCRIPT DI SINI, bukan di <head> -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+        import { getFirestore, doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+        import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBQtlCxwhIXyKxuW5FRyRqOElCz-2_EPjs",
+            authDomain: "redcross-76c90.firebaseapp.com",
+            projectId: "redcross-76c90",
+            storageBucket: "redcross-76c90.appspot.com",   // ✅ diperbaiki
+            messagingSenderId: "720435310423",
+            appId: "1:720435310423:web:058f8f14743135da62d812",
+            measurementId: "G-1N1LDV3R95"
+        }
+
+    </div>
 </body>
 
 
 </html>
-
-<script>
-    // 🚨 Cek login
-    if (localStorage.getItem("isLoggedIn") !== "true") {
-      window.location.href = "login.html";
-    }
-
-    // 🚪 Logout function
-    function logout() {
-      localStorage.removeItem("isLoggedIn");
-      window.location.href = "login.html";
-    }
-  </script>
-
-
-
 
 
 
