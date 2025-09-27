@@ -668,20 +668,16 @@
 
 </html>
 
- <script>
-    function login() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      // Contoh validasi login
-      if (email === "admin@pmr.com" && password === "123456") {
-        localStorage.setItem("isLoggedIn", "true"); // simpan status login
-        window.location.href = "admin.html"; // masuk ke admin
+  <script>
+    function goAdmin() {
+      // kalau belum login → masuk login.html
+      if (localStorage.getItem("isLoggedIn") !== "true") {
+        window.location.href = "login.html";
       } else {
-        alert("Email atau password salah!");
+        // kalau sudah login → langsung ke admin.html
+        window.location.href = "admin.html";
       }
     }
-  </script>
 
 
 
