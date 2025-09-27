@@ -461,11 +461,9 @@ body {
 }
 
 .candidates-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
+    align-items: stretch;
 }
+
 
 .candidate-card {
     display: flex;
@@ -547,9 +545,7 @@ body {
 }
 
 .candidate-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    flex-grow: 1;   /* isi melar ambil ruang */
 }
 .candidate-name {
     font-size: 1.5rem;
@@ -612,9 +608,9 @@ body {
 
 .candidate-select-btn {
     margin-top: auto;
-    border-radius: 0 0 20px 20px; /* biar nyatu sama card */
+    border-radius: 0 0 20px 20px; /* sudut bawah rapi */
+    flex-shrink: 0; /* tombol nggak ketarik */
 }
-
 
 .candidate-card:hover .candidate-select-btn {
     background: linear-gradient(135deg, var(--pmr-dark-red), #991b1b);
@@ -1132,4 +1128,5 @@ body {
         border-width: 4px;
     }
 }
+
 
