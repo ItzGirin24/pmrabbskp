@@ -530,7 +530,7 @@ body {
 
 .candidate-image {
     width: 100%;
-    height: 350px;   /* perbesar */
+    height: 450px;   /* perbesar */
     object-fit: cover; /* bisa ganti contain kalau mau utuh */
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
@@ -1152,3 +1152,4 @@ body {
     }
 
 }
+
