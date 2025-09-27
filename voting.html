@@ -119,11 +119,23 @@
                         <div class="candidate-badge">
                             <i class="fas fa-user-md"></i>
                         </div>
-                        <div class="candidate-image-container">
-                            <img src="${candidate.image}" alt="${candidate.name}" class="candidate-image">
-                            <div class="candidate-overlay">
-                                <i class="fas fa-heart-pulse"></i>
-                            </div>
+                   ```css
+.candidate-image-container {
+  width: 100%;
+  height: 260px; /* tambah tinggi biar foto lebih luas */
+  overflow: hidden;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.candidate-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* supaya foto tetap proporsional dan memenuhi container */
+  object-position: center top; /* bisa diganti 'center' atau 'top' sesuai framing */
+}
+```
+
                         </div>
                         <div class="candidate-content">
                             <div class="candidate-name">${candidate.name}</div>
@@ -648,6 +660,7 @@
 
 
 </html>
+
 
 
 
