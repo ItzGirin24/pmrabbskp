@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PMR - ABBSKP 2025/2026</title>
+
+  <!-- Favicon -->
+
+  <link rel="icon" href="LOGO-PMI.png" type="image/x-icon" />
+
+  <!-- Custom CSS -->
+
+  <link rel="stylesheet" href="/style.css" />
+
+  <!-- Font Awesome -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+
+  <!-- Google Fonts -->
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Firebase SDK -->
+
+  <script
+    type="module"
+    src="/voting.js"
+  ></script>
+
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header class="medical-header">
+      <div class="header-background">
+        <div class="medical-cross"></div>
+        <div class="medical-pulse"></div>
+      </div>
+
+```
+  <div class="header-content">
+    <div class="logo-container">
+      <div class="pmr-logo">
+        <img
+          src="/LOGO-PMI.jpg"
+          alt="PMR Logo"
+          style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover"
+        />
+      </div>
+      <div class="header-text">
+        <h1>
+          <span class="pmr-text">PMR</span>
+          <span class="voting-text">ABBSKP</span>
+        </h1>
+        <p class="subtitle">
+          <i class="fas fa-hospital"></i>
+          Pemilihan Ketua PMR 2025/2026
+        </p>
+        <p class="school-name">SMA IT Abu Bakar Boarding School</p>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-container">
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="progress-text" id="progressText">Masuk</div>
+    </div>
+  </div>
+</header>
+
+<!-- Main -->
+<main class="main-content">
+  <div class="container">
+    <!-- Auth Section -->
+    <section id="authSection" class="auth-section">
+      <div class="auth-card">
+        <div class="auth-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h2>Masuk untuk Memberikan Suara</h2>
+        <p class="auth-description">
+          Gunakan akun Google Anda untuk masuk dan berpartisipasi dalam
+          pemilihan ketua PMR
+        </p>
+        <button id="googleSignInBtn" class="google-signin-btn">
+          <i class="fab fa-google"></i> Masuk dengan Google
+        </button>
+        <div class="auth-info">
+          <i class="fas fa-info-circle"></i>
+          Data Anda aman dan hanya digunakan untuk verifikasi voting
+        </div>
+      </div>
+    </section>
+
+    <!-- Voting Section -->
+    <section id="votingSection" class="voting-section">
+      <!-- User Info -->
+      <div id="userInfo" class="user-info-section"></div>
+
+      <!-- Candidates -->
+      <div class="candidates-section">
+        <div class="section-header">
+          <h2><i class="fas fa-users"></i> Kandidat Ketua PMR</h2>
+          <p class="section-description">
+            Pilih salah satu kandidat yang menurut Anda paling sesuai untuk
+            memimpin PMR
+          </p>
+        </div>
+
+        <div id="candidatesContainer" class="candidates-grid"></div>
+      </div>
+
+      <!-- Voting Controls -->
+      <div class="voting-controls">
+        <button id="voteBtn" class="vote-button" disabled>
+          <i class="fas fa-vote-yea"></i> Pilih Kandidat
+        </button>
+        <button id="signOutBtn" class="signout-button">
+          <i class="fas fa-sign-out-alt"></i> Keluar
+        </button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="medical-footer">
+  <div class="footer-content">
+    <div class="footer-logo">
+      <i class="fas fa-heart-pulse"></i>
+      <span>MULTIMEDIA PMR</span>
+    </div>
+    <div class="footer-text">
+      <p>&copy; 2017 SMA IT Abu Bakar Boarding School</p>
+      <p>PMR ABBSKP</p>
+    </div>
+    <div class="footer-links">
+      <a href="/admin">
+        <i class="fas fa-chart-bar"></i> Admin
+      </a>
+    </div>
+  </div>
+</footer>
+```
+
+  </div>
+</body>
+</html>
+
+<script type="module" src="/voting.js"></script>
+
