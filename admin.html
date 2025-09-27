@@ -1056,18 +1056,19 @@
 </body>
 </html>
 
-<script>
-    // 🚨 Cek login
+  <script>
+    // cek login
     if (localStorage.getItem("isLoggedIn") !== "true") {
-      window.location.href = "login.html";
+      window.location.href = "login.html"; // balik ke login kalau belum login
     }
 
-    // 🚪 Logout function
+    // fungsi logout
     function logout() {
-      localStorage.removeItem("isLoggedIn");
-      window.location.href = "login.html";
+      localStorage.removeItem("isLoggedIn"); // hapus status login
+      window.location.href = "login.html"; // kembali ke login
     }
   </script>
+
 
 
 
