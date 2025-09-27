@@ -3,7 +3,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Test Role Firebase</title>
+  <title>Test Role Firebase Permanent</title>
   <script src="https://kit.fontawesome.com/8fefb4c1a3.js" crossorigin="anonymous"></script>
   <style>
     body { font-family: Arial, sans-serif; padding: 2rem; background: #f5f5f5; }
@@ -20,7 +20,7 @@
   </style>
 </head>
 <body>
-  <h2>Halaman Test Role Firebase</h2>
+  <h2>Halaman Test Role Firebase Permanent</h2>
 
   <button id="loginBtn">Login dengan Google</button>
 
@@ -42,9 +42,9 @@
     <div class="controls">
       <label for="roleSelect">Ubah Role: </label>
       <select id="roleSelect">
+        <option value="unknown" selected>Tidak diketahui</option>
         <option value="siswa">Siswa</option>
         <option value="guru">Guru</option>
-        <option value="unknown" selected>Tidak diketahui</option>
       </select>
     </div>
   </div>
@@ -54,6 +54,8 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } 
       from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc } 
+      from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
     // 🔹 Ganti dengan konfigurasi Firebase projectmu
 const firebaseConfig = {
@@ -69,6 +71,7 @@ const firebaseConfig = {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
+    const db = getFirestore(app);
 
     const loginBtn = document.getElementById("loginBtn");
     const profileCard = document.getElementById("profileCard");
@@ -82,11 +85,26 @@ const firebaseConfig = {
     function renderUserRole(role) {
       if (role === "siswa") {
         userRoleElement.innerHTML = `<i class="fas fa-user-graduate"></i> Siswa SMA IT Abu Bakar`;
+        roleSelect.value = "siswa";
       } else if (role === "guru") {
         userRoleElement.innerHTML = `<i class="fas fa-chalkboard-teacher"></i> Guru SMA IT Abu Bakar`;
+        roleSelect.value = "guru";
       } else {
         userRoleElement.innerHTML = `<i class="fas fa-user"></i> Role belum ditentukan`;
+        roleSelect.value = "unknown";
       }
+    }
+
+    async function saveUserRole(uid, role) {
+      await setDoc(doc(db, "users", uid), { role }, { merge: true });
+    }
+
+    async function loadUserRole(uid) {
+      const snap = await getDoc(doc(db, "users", uid));
+      if (snap.exists()) {
+        return snap.data().role || "unknown";
+      }
+      return "unknown";
     }
 
     loginBtn.addEventListener("click", async () => {
@@ -97,7 +115,7 @@ const firebaseConfig = {
       }
     });
 
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
         loginBtn.style.display = "none";
         profileCard.style.display = "block";
@@ -107,15 +125,18 @@ const firebaseConfig = {
         userUid.textContent = `UID: ${user.uid}`;
         userAvatar.src = user.photoURL;
 
-        renderUserRole("unknown");
+        const savedRole = await loadUserRole(user.uid);
+        renderUserRole(savedRole);
+
+        roleSelect.onchange = async (e) => {
+          const newRole = e.target.value;
+          await saveUserRole(user.uid, newRole);
+          renderUserRole(newRole);
+        };
       } else {
         loginBtn.style.display = "block";
         profileCard.style.display = "none";
       }
-    });
-
-    roleSelect.addEventListener("change", (e) => {
-      renderUserRole(e.target.value);
     });
   </script>
 </body>
