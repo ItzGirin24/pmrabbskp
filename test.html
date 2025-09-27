@@ -1,48 +1,43 @@
-
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Test Role Firebase Permanent</title>
+  <title>Admin Panel - Ubah Role</title>
   <script src="https://kit.fontawesome.com/8fefb4c1a3.js" crossorigin="anonymous"></script>
   <style>
     body { font-family: Arial, sans-serif; padding: 2rem; background: #f5f5f5; }
-    #loginBtn { padding: 10px 20px; border: none; background: #4285F4; color: white;
-                font-size: 16px; border-radius: 6px; cursor: pointer; }
     .card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 3px 10px rgba(0,0,0,0.1); 
-            max-width: 450px; margin-top: 1rem; display:none; }
-    .user-profile { display: flex; align-items: center; gap: 1rem; }
-    .user-avatar-container img { border-radius: 50%; }
-    .user-role { margin-top: 0.25rem; color: #d32f2f; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
+            max-width: 500px; margin-top: 1rem; display:none; }
+    .user-role { margin-top: 0.5rem; color: #d32f2f; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
     .controls { margin-top: 1rem; }
     .controls select { padding: 5px; font-size: 14px; }
-    .user-uid { font-size: 12px; color: #666; }
+    input { padding: 8px; font-size: 14px; width: 250px; }
+    button { padding: 8px 15px; background: #4285F4; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    .info { margin-top: 0.5rem; }
   </style>
 </head>
 <body>
-  <h2>Halaman Test Role Firebase Permanent</h2>
+  <h2>Admin Panel - Ubah Role User</h2>
 
-  <button id="loginBtn">Login dengan Google</button>
+  <div>
+    <input type="text" id="uidInput" placeholder="Masukkan UID user">
+    <button id="searchBtn">Cari</button>
+  </div>
 
   <div id="profileCard" class="card">
-    <div class="user-profile">
-      <div class="user-avatar-container">
-        <img id="userAvatar" src="https://via.placeholder.com/60" alt="Avatar">
-      </div>
-      <div class="user-details">
-        <div id="userName" style="font-weight: bold;"></div>
-        <div id="userEmail" style="font-size: 14px; color: gray;"></div>
-        <div id="userUid" class="user-uid"></div>
-        <div class="user-role" id="userRole">
-          <i class="fas fa-user"></i> Role belum ditentukan
-        </div>
-      </div>
+    <h3>Data User</h3>
+    <div id="userUid" class="info"></div>
+    <div id="userName" class="info"></div>
+    <div id="userEmail" class="info"></div>
+    <div class="user-role" id="userRole">
+      <i class="fas fa-user"></i> Role belum ditentukan
     </div>
 
     <div class="controls">
       <label for="roleSelect">Ubah Role: </label>
       <select id="roleSelect">
-        <option value="unknown" selected>Tidak diketahui</option>
+        <option value="unknown">Tidak diketahui</option>
         <option value="siswa">Siswa</option>
         <option value="guru">Guru</option>
       </select>
@@ -52,12 +47,9 @@
   <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } 
-      from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
     import { getFirestore, doc, getDoc, setDoc } 
       from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
-    // 🔹 Ganti dengan konfigurasi Firebase projectmu
 const firebaseConfig = {
   apiKey: "AIzaSyBQtlCxwhIXyKxuW5FRyRqOElCz-2_EPjs",
   authDomain: "redcross-76c90.firebaseapp.com",
@@ -68,17 +60,16 @@ const firebaseConfig = {
   measurementId: "G-1N1LDV3R95"
 };
 
+
     const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
     const db = getFirestore(app);
 
-    const loginBtn = document.getElementById("loginBtn");
+    const searchBtn = document.getElementById("searchBtn");
+    const uidInput = document.getElementById("uidInput");
     const profileCard = document.getElementById("profileCard");
+    const userUid = document.getElementById("userUid");
     const userName = document.getElementById("userName");
     const userEmail = document.getElementById("userEmail");
-    const userUid = document.getElementById("userUid");
-    const userAvatar = document.getElementById("userAvatar");
     const userRoleElement = document.getElementById("userRole");
     const roleSelect = document.getElementById("roleSelect");
 
@@ -95,48 +86,40 @@ const firebaseConfig = {
       }
     }
 
-    async function saveUserRole(uid, role) {
-      await setDoc(doc(db, "users", uid), { role }, { merge: true });
-    }
-
-    async function loadUserRole(uid) {
+    async function loadUser(uid) {
       const snap = await getDoc(doc(db, "users", uid));
-      if (snap.exists()) {
-        return snap.data().role || "unknown";
-      }
-      return "unknown";
+      return snap.exists() ? snap.data() : null;
     }
 
-    loginBtn.addEventListener("click", async () => {
-      try {
-        await signInWithPopup(auth, provider);
-      } catch (err) {
-        console.error("Login gagal:", err);
-      }
-    });
+    async function saveUser(uid, data) {
+      await setDoc(doc(db, "users", uid), data, { merge: true });
+    }
 
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        loginBtn.style.display = "none";
-        profileCard.style.display = "block";
+    searchBtn.addEventListener("click", async () => {
+      const uid = uidInput.value.trim();
+      if (!uid) return alert("Masukkan UID dulu!");
 
-        userName.textContent = user.displayName;
-        userEmail.textContent = user.email;
-        userUid.textContent = `UID: ${user.uid}`;
-        userAvatar.src = user.photoURL;
+      profileCard.style.display = "block";
+      userUid.textContent = `UID: ${uid}`;
 
-        const savedRole = await loadUserRole(user.uid);
-        renderUserRole(savedRole);
-
-        roleSelect.onchange = async (e) => {
-          const newRole = e.target.value;
-          await saveUserRole(user.uid, newRole);
-          renderUserRole(newRole);
-        };
+      const data = await loadUser(uid);
+      if (data) {
+        userName.textContent = `Nama: ${data.name || "(tidak ada)"}`;
+        userEmail.textContent = `Email: ${data.email || "(tidak ada)"}`;
+        renderUserRole(data.role || "unknown");
       } else {
-        loginBtn.style.display = "block";
-        profileCard.style.display = "none";
+        userName.textContent = "Nama: (belum ada)";
+        userEmail.textContent = "Email: (belum ada)";
+        renderUserRole("unknown");
+        await saveUser(uid, { role: "unknown" });
       }
+
+      roleSelect.onchange = async (e) => {
+        const newRole = e.target.value;
+        await saveUser(uid, { role: newRole });
+        renderUserRole(newRole);
+        alert(`Role user ${uid} berhasil diubah ke: ${newRole}`);
+      };
     });
   </script>
 </body>

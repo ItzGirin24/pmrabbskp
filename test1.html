@@ -1,0 +1,90 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Voting Page</title>
+  <script src="https://kit.fontawesome.com/8fefb4c1a3.js" crossorigin="anonymous"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2rem; background: #f5f5f5; }
+    .card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 3px 10px rgba(0,0,0,0.1); 
+            max-width: 500px; margin: auto; }
+    .user-role { margin-top: 0.5rem; color: #1976d2; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h2>Voting Page</h2>
+
+  <div id="profileCard" class="card" style="display:none;">
+    <div id="userName"></div>
+    <div id="userEmail"></div>
+    <div class="user-role" id="userRole"></div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } 
+      from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc } 
+      from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBQtlCxwhIXyKxuW5FRyRqOElCz-2_EPjs",
+  authDomain: "redcross-76c90.firebaseapp.com",
+  projectId: "redcross-76c90",
+  storageBucket: "redcross-76c90.firebasestorage.app",
+  messagingSenderId: "720435310423",
+  appId: "1:720435310423:web:058f8f14743135da62d812",
+  measurementId: "G-1N1LDV3R95"
+};
+
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+    const db = getFirestore(app);
+
+    const profileCard = document.getElementById("profileCard");
+    const userName = document.getElementById("userName");
+    const userEmail = document.getElementById("userEmail");
+    const userRoleElement = document.getElementById("userRole");
+
+    function renderUserRole(role) {
+      if (role === "siswa") {
+        userRoleElement.innerHTML = `<i class="fas fa-user-graduate"></i> Siswa SMA IT Abu Bakar`;
+      } else if (role === "guru") {
+        userRoleElement.innerHTML = `<i class="fas fa-chalkboard-teacher"></i> Guru SMA IT Abu Bakar`;
+      } else {
+        userRoleElement.innerHTML = `<i class="fas fa-user"></i> Role belum ditentukan`;
+      }
+    }
+
+    async function saveUserData(user) {
+      const userRef = doc(db, "users", user.uid);
+      await setDoc(userRef, {
+        name: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+      }, { merge: true });
+    }
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        profileCard.style.display = "block";
+        userName.textContent = `Nama: ${user.displayName}`;
+        userEmail.textContent = `Email: ${user.email}`;
+
+        await saveUserData(user);
+
+        const snap = await getDoc(doc(db, "users", user.uid));
+        const role = snap.exists() ? (snap.data().role || "unknown") : "unknown";
+        renderUserRole(role);
+      } else {
+        await signInWithPopup(auth, provider);
+      }
+    });
+  </script>
+</body>
+</html>
+```
