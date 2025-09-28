@@ -1,6 +1,4 @@
-/* PMR ABBSKP Voting System - Fixed Responsive CSS */
-/* Konsisten untuk semua ukuran layar */
-
+/* Modern Medical PMR Theme */
 :root {
     --pmr-red: #dc2626;
     --pmr-dark-red: #b91c1c;
@@ -32,24 +30,21 @@ body {
     background: linear-gradient(135deg, var(--pmr-light-red) 0%, var(--pmr-white) 50%, var(--pmr-light-red) 100%);
     min-height: 100vh;
     overflow-x: hidden;
-    font-size: 16px;
 }
 
 #app {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    width: 100%;
 }
 
-/* Header - Fixed Size untuk semua device */
+/* Medical Header */
 .medical-header {
     position: relative;
     background: linear-gradient(135deg, var(--pmr-red) 0%, var(--pmr-dark-red) 100%);
     color: var(--pmr-white);
-    padding: 40px 20px;
+    padding: 2rem 1rem;
     overflow: hidden;
-    width: 100%;
 }
 
 .header-background {
@@ -93,15 +88,13 @@ body {
     z-index: 2;
     max-width: 1200px;
     margin: 0 auto;
-    width: 100%;
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 24px;
-    margin-bottom: 32px;
-    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .pmr-logo {
@@ -112,22 +105,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 40px;
+    font-size: 2.5rem;
     color: var(--pmr-red);
     box-shadow: var(--shadow-medium);
     border: 4px solid rgba(255, 255, 255, 0.3);
-    flex-shrink: 0;
-}
-
-.header-text {
-    text-align: center;
 }
 
 .header-text h1 {
-    font-size: 48px;
+    font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 8px;
-    line-height: 1.2;
+    margin-bottom: 0.5rem;
 }
 
 .pmr-text {
@@ -137,28 +124,26 @@ body {
 
 .voting-text {
     color: #fbbf24;
-    margin-left: 8px;
+    margin-left: 0.5rem;
 }
 
 .subtitle {
-    font-size: 20px;
-    margin-bottom: 8px;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 .school-name {
-    font-size: 16px;
+    font-size: 1rem;
     opacity: 0.9;
     font-weight: 300;
 }
 
 /* Progress Indicator */
 .progress-container {
-    margin-top: 32px;
-    width: 100%;
+    margin-top: 2rem;
 }
 
 .progress-bar-container {
@@ -166,9 +151,6 @@ body {
     height: 8px;
     border-radius: 4px;
     overflow: hidden;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
 }
 
 .progress-bar {
@@ -180,43 +162,39 @@ body {
 }
 
 .progress-text {
-    margin-top: 8px;
-    font-size: 14px;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
     text-align: center;
     font-weight: 500;
 }
 
-/* Main Content - Fixed Container */
+/* Main Content */
 .main-content {
     flex: 1;
-    padding: 40px 20px;
-    width: 100%;
+    padding: 2rem 1rem;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    width: 100%;
-    padding: 0 20px;
 }
 
-/* Authentication Section - Fixed Size */
+/* Authentication Section */
 .auth-section {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 60vh;
-    width: 100%;
 }
 
 .auth-card {
     background: var(--pmr-white);
     border-radius: 20px;
-    padding: 48px;
+    padding: 3rem;
     box-shadow: var(--shadow-heavy);
     text-align: center;
-    width: 100%;
     max-width: 500px;
+    width: 100%;
     border: 2px solid var(--pmr-light-red);
 }
 
@@ -228,33 +206,31 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px;
+    font-size: 2rem;
     color: var(--pmr-white);
-    margin: 0 auto 32px;
+    margin: 0 auto 2rem;
     box-shadow: var(--shadow-medium);
 }
 
 .auth-card h2 {
-    font-size: 28px;
+    font-size: 1.75rem;
     color: var(--pmr-dark-gray);
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
     font-weight: 600;
-    line-height: 1.3;
 }
 
 .auth-description {
     color: var(--pmr-gray);
-    margin-bottom: 32px;
+    margin-bottom: 2rem;
     line-height: 1.7;
-    font-size: 16px;
 }
 
 .google-signin-btn {
     background: var(--pmr-white);
     color: var(--pmr-gray);
     border: 2px solid #e5e7eb;
-    padding: 16px 32px;
-    font-size: 18px;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
     border-radius: 50px;
     cursor: pointer;
     transition: var(--transition-medium);
@@ -262,10 +238,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 0.75rem;
     margin: 0 auto;
-    width: 100%;
-    max-width: 300px;
+    min-width: 250px;
     font-weight: 500;
 }
 
@@ -282,41 +257,37 @@ body {
 }
 
 .auth-info {
-    margin-top: 24px;
-    padding: 16px;
+    margin-top: 1.5rem;
+    padding: 1rem;
     background: var(--pmr-light-red);
     border-radius: 10px;
     color: var(--pmr-dark-red);
-    font-size: 14px;
+    font-size: 0.875rem;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 /* Voting Section */
 .voting-section {
     display: none;
     animation: fadeInUp 0.6s ease;
-    width: 100%;
 }
 
 /* User Info Section */
 .user-info-section {
-    margin-bottom: 48px;
-    width: 100%;
+    margin-bottom: 3rem;
 }
 
 .user-profile {
     background: var(--pmr-white);
     border-radius: 15px;
-    padding: 32px;
+    padding: 2rem;
     box-shadow: var(--shadow-medium);
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 1.5rem;
     border-left: 4px solid var(--pmr-red);
-    flex-wrap: wrap;
-    justify-content: center;
 }
 
 .user-profile.voted {
@@ -326,7 +297,6 @@ body {
 
 .user-avatar-container {
     position: relative;
-    flex-shrink: 0;
 }
 
 .user-avatar {
@@ -361,49 +331,45 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 0.75rem;
     color: var(--pmr-white);
 }
 
 .user-details {
     flex: 1;
-    text-align: center;
-    min-width: 200px;
 }
 
 .user-name {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 600;
     color: var(--pmr-dark-gray);
-    margin-bottom: 4px;
+    margin-bottom: 0.25rem;
 }
 
 .user-email {
     color: var(--pmr-gray);
-    font-size: 14px;
-    margin-bottom: 8px;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
 }
 
 .user-role {
     color: var(--pmr-red);
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 /* Vote Status Card */
 .vote-status-card {
     background: var(--pmr-white);
     border-radius: 15px;
-    padding: 32px;
+    padding: 2rem;
     box-shadow: var(--shadow-medium);
     text-align: center;
-    margin-top: 24px;
+    margin-top: 1.5rem;
     border: 2px solid var(--success-green);
-    width: 100%;
 }
 
 .vote-status-icon {
@@ -414,28 +380,26 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px;
+    font-size: 2rem;
     color: var(--pmr-white);
-    margin: 0 auto 24px;
+    margin: 0 auto 1.5rem;
     animation: successPulse 1s ease;
 }
 
 .vote-status-card h3 {
     color: var(--success-green);
-    font-size: 24px;
-    margin-bottom: 32px;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .voted-candidate {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 1rem;
     background: var(--pmr-light-gray);
-    padding: 16px;
+    padding: 1rem;
     border-radius: 10px;
-    margin: 24px 0;
-    justify-content: center;
-    flex-wrap: wrap;
+    margin: 1.5rem 0;
 }
 
 .voted-candidate-image {
@@ -443,114 +407,64 @@ body {
     height: 60px;
     border-radius: 10px;
     object-fit: cover;
-    flex-shrink: 0;
 }
 
 .voted-candidate-info {
-    text-align: center;
+    text-align: left;
 }
 
 .voted-candidate-name {
     font-weight: 600;
     color: var(--pmr-dark-gray);
-    margin-bottom: 4px;
+    margin-bottom: 0.25rem;
 }
 
 .voted-candidate-position {
     color: var(--pmr-red);
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 .vote-timestamp {
     color: var(--pmr-gray);
-    font-size: 14px;
+    font-size: 0.875rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
-/* Candidates Section - Fixed Grid */
+/* Candidates Section */
 .candidates-section {
-    margin-bottom: 48px;
-    width: 100%;
+    margin-bottom: 3rem;
 }
 
 .section-header {
     text-align: center;
-    margin-bottom: 48px;
-    width: 100%;
+    margin-bottom: 3rem;
 }
 
 .section-header h2 {
-    font-size: 32px;
+    font-size: 2rem;
     color: var(--pmr-dark-gray);
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
+    gap: 0.75rem;
 }
 
 .section-description {
     color: var(--pmr-gray);
-    font-size: 18px;
+    font-size: 1.1rem;
     max-width: 600px;
     margin: 0 auto;
 }
 
-/* Fixed Grid - Selalu 2 kolom di desktop, 1 kolom di mobile */
 .candidates-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-    margin-bottom: 48px;
-    width: 100%;
-}
-
-/* Untuk layar sangat kecil, gunakan 1 kolom */
-@media (max-width: 768px) {
-    .candidates-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-    
-    .header-text h1 {
-        font-size: 32px;
-    }
-    
-    .logo-container {
-        flex-direction: column;
-        gap: 16px;
-    }
-    
-    .auth-card {
-        padding: 32px 24px;
-        margin: 16px;
-    }
-    
-    .user-profile {
-        flex-direction: column;
-        text-align: center;
-        padding: 24px;
-    }
-    
-    .voted-candidate {
-        flex-direction: column;
-    }
-    
-    .container {
-        padding: 0 16px;
-    }
-    
-    .main-content {
-        padding: 24px 16px;
-    }
-    
-    .medical-header {
-        padding: 24px 16px;
-    }
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
 }
 
 .candidate-card {
@@ -565,7 +479,10 @@ body {
     animation: slideInUp 0.6s ease;
     animation-fill-mode: both;
     position: relative;
-    width: 100%;
+
+    /* tambahkan ini */
+    display: flex;
+    flex-direction: column;
 }
 
 .candidate-card:hover {
@@ -595,8 +512,8 @@ body {
 
 .candidate-badge {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 1rem;
+    right: 1rem;
     width: 40px;
     height: 40px;
     background: var(--pmr-red);
@@ -605,7 +522,7 @@ body {
     align-items: center;
     justify-content: center;
     color: var(--pmr-white);
-    font-size: 20px;
+    font-size: 1.2rem;
     z-index: 2;
     box-shadow: var(--shadow-light);
 }
@@ -613,13 +530,16 @@ body {
 .candidate-image-container {
     position: relative;
     overflow: hidden;
-    width: 100%;
 }
 
 .candidate-image {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 700px;   /* perbesar */
+    object-fit: cover; /* bisa ganti contain kalau mau utuh */
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
 }
 
 .candidate-overlay {
@@ -633,7 +553,7 @@ body {
     align-items: center;
     justify-content: center;
     color: var(--pmr-white);
-    font-size: 32px;
+    font-size: 2rem;
     opacity: 0;
     transition: var(--transition-medium);
 }
@@ -643,106 +563,103 @@ body {
 }
 
 .candidate-content {
-    padding: 32px;
-    width: 100%;
+    padding: 2rem;
 }
 
 .candidate-name {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--pmr-dark-gray);
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
 }
 
 .candidate-position {
     color: var(--pmr-red);
     font-weight: 600;
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 .candidate-vision,
 .candidate-mission {
-    margin-bottom: 24px;
-    width: 100%;
+    margin-bottom: 1.5rem;
 }
 
 .candidate-vision h4,
 .candidate-mission h4 {
     color: var(--pmr-dark-gray);
-    font-size: 16px;
-    margin-bottom: 12px;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 .candidate-vision p {
     color: var(--pmr-gray);
     line-height: 1.7;
-    font-size: 15px;
+    font-size: 0.925rem;
 }
 
 .candidate-mission ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    width: 100%;
 }
 
 .candidate-mission li {
     color: var(--pmr-gray);
-    margin-bottom: 8px;
-    font-size: 15px;
+    margin-bottom: 0.5rem;
+    font-size: 0.925rem;
     display: flex;
     align-items: flex-start;
-    gap: 8px;
+    gap: 0.5rem;
     line-height: 1.6;
 }
 
 .candidate-mission li i {
     color: var(--success-green);
-    margin-top: 4px;
-    font-size: 12px;
-    flex-shrink: 0;
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
 }
 
 .candidate-select-btn {
     background: linear-gradient(135deg, var(--pmr-red), var(--pmr-dark-red));
     color: var(--pmr-white);
-    padding: 16px;
+    padding: 1rem;
     text-align: center;
     font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 0.5rem;
     transition: var(--transition-medium);
-    width: 100%;
+
+    /* biar tombol selalu nempel bawah */
+    margin-top: auto;
 }
 
 .candidate-card:hover .candidate-select-btn {
     background: linear-gradient(135deg, var(--pmr-dark-red), #991b1b);
 }
 
-/* Voting Controls - Fixed Layout */
+/* Voting Controls */
 .voting-controls {
     display: flex;
     justify-content: center;
-    gap: 16px;
+    gap: 1rem;
     flex-wrap: wrap;
-    margin-top: 48px;
-    width: 100%;
+    margin-top: 3rem;
 }
 
 .vote-button {
     background: linear-gradient(135deg, var(--pmr-gray), #4b5563);
     color: var(--pmr-white);
     border: none;
-    padding: 20px 48px;
-    font-size: 20px;
+    padding: 1.25rem 3rem;
+    font-size: 1.2rem;
     font-weight: 600;
     border-radius: 50px;
     cursor: not-allowed;
@@ -750,10 +667,8 @@ body {
     box-shadow: var(--shadow-medium);
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 0.75rem;
     opacity: 0.6;
-    min-width: 200px;
-    justify-content: center;
 }
 
 .vote-button.enabled {
@@ -787,8 +702,8 @@ body {
     background: linear-gradient(135deg, #6b7280, #4b5563);
     color: var(--pmr-white);
     border: none;
-    padding: 16px 32px;
-    font-size: 16px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
     font-weight: 500;
     border-radius: 50px;
     cursor: pointer;
@@ -796,7 +711,7 @@ body {
     box-shadow: var(--shadow-light);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 .signout-button:hover {
@@ -805,7 +720,7 @@ body {
     box-shadow: var(--shadow-medium);
 }
 
-/* Modal - Fixed Size */
+/* Modal */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -819,7 +734,7 @@ body {
     z-index: 1000;
     opacity: 0;
     transition: var(--transition-medium);
-    padding: 16px;
+    padding: 1rem;
 }
 
 .modal-overlay.show {
@@ -829,7 +744,7 @@ body {
 .modal-content {
     background: var(--pmr-white);
     border-radius: 20px;
-    padding: 32px;
+    padding: 2rem;
     max-width: 500px;
     width: 100%;
     box-shadow: var(--shadow-heavy);
@@ -843,41 +758,38 @@ body {
 
 .modal-header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 2rem;
 }
 
 .modal-header i {
-    font-size: 48px;
+    font-size: 3rem;
     color: var(--pmr-red);
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
 }
 
 .modal-header h3 {
     color: var(--pmr-dark-gray);
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 
 .modal-body {
-    margin-bottom: 32px;
+    margin-bottom: 2rem;
 }
 
 .modal-body p {
     color: var(--pmr-gray);
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
     text-align: center;
-    font-size: 16px;
 }
 
 .confirm-candidate {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 1rem;
     background: var(--pmr-light-red);
-    padding: 16px;
+    padding: 1rem;
     border-radius: 10px;
-    margin-bottom: 24px;
-    justify-content: center;
-    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
 }
 
 .confirm-candidate img {
@@ -885,7 +797,6 @@ body {
     height: 60px;
     border-radius: 10px;
     object-fit: cover;
-    flex-shrink: 0;
 }
 
 .confirm-name {
@@ -895,39 +806,38 @@ body {
 
 .confirm-position {
     color: var(--pmr-red);
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 .warning-text {
     background: #fef3c7;
     color: #92400e;
-    padding: 16px;
+    padding: 1rem;
     border-radius: 10px;
-    font-size: 14px;
+    font-size: 0.875rem;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 .modal-actions {
     display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: flex-end;
 }
 
 .btn-cancel {
     background: var(--pmr-light-gray);
     color: var(--pmr-gray);
     border: none;
-    padding: 12px 24px;
+    padding: 0.75rem 1.5rem;
     border-radius: 10px;
     cursor: pointer;
     font-weight: 500;
     transition: var(--transition-fast);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 .btn-cancel:hover {
@@ -938,56 +848,37 @@ body {
     background: linear-gradient(135deg, var(--pmr-red), var(--pmr-dark-red));
     color: var(--pmr-white);
     border: none;
-    padding: 12px 24px;
+    padding: 0.75rem 1.5rem;
     border-radius: 10px;
     cursor: pointer;
     font-weight: 500;
     transition: var(--transition-fast);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 .btn-confirm:hover {
     background: linear-gradient(135deg, var(--pmr-dark-red), #991b1b);
 }
 
-.btn-confirm-delete {
-    background: linear-gradient(135deg, var(--pmr-red), var(--pmr-dark-red));
-    color: var(--pmr-white);
-    border: none;
-    padding: 12px 24px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: var(--transition-fast);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.btn-confirm-delete:hover {
-    background: linear-gradient(135deg, var(--pmr-dark-red), #991b1b);
-}
-
-/* Notifications - Fixed */
+/* Notifications */
 .notification {
     position: fixed;
-    top: 32px;
-    right: 32px;
+    top: 2rem;
+    right: 2rem;
     background: var(--pmr-white);
     border-radius: 10px;
-    padding: 16px 24px;
+    padding: 1rem 1.5rem;
     box-shadow: var(--shadow-heavy);
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 0.75rem;
     z-index: 1001;
     transform: translateX(100%);
     transition: var(--transition-medium);
     border-left: 4px solid var(--pmr-red);
     min-width: 300px;
-    max-width: 400px;
 }
 
 .notification.show {
@@ -1014,13 +905,12 @@ body {
     color: var(--pmr-red);
 }
 
-/* Footer - Fixed */
+/* Footer */
 .medical-footer {
     background: linear-gradient(135deg, var(--pmr-dark-gray), #1f2937);
     color: var(--pmr-white);
-    padding: 32px 20px;
+    padding: 2rem 1rem;
     margin-top: auto;
-    width: 100%;
 }
 
 .footer-content {
@@ -1030,14 +920,14 @@ body {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 1rem;
 }
 
 .footer-logo {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-size: 24px;
+    gap: 0.75rem;
+    font-size: 1.5rem;
     font-weight: 700;
 }
 
@@ -1051,7 +941,7 @@ body {
 }
 
 .footer-text p {
-    margin: 4px 0;
+    margin: 0.25rem 0;
     opacity: 0.9;
 }
 
@@ -1060,8 +950,8 @@ body {
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
     border-radius: 10px;
     transition: var(--transition-fast);
 }
@@ -1135,33 +1025,98 @@ body {
     }
 }
 
-/* Loading Indicator */
-.loading-indicator {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .medical-header {
+        padding: 1.5rem 1rem;
+    }
+    
+    .logo-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .header-text h1 {
+        font-size: 2rem;
+    }
+    
+    .auth-card {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+    }
+    
+    .candidates-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .candidate-card {
+        margin: 0 0.5rem;
+    }
+    
+    .voting-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .vote-button {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .modal-content {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .notification {
+        right: 1rem;
+        left: 1rem;
+        min-width: auto;
+    }
 }
 
-.loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid var(--pmr-light-red);
-    border-top: 5px solid var(--pmr-red);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+@media (max-width: 480px) {
+    .main-content {
+        padding: 1rem 0.5rem;
+    }
+    
+    .header-text h1 {
+        font-size: 1.75rem;
+    }
+    
+    .candidate-content {
+    padding: 2rem;
+
+    /* supaya konten isi (visi, misi, dll) bisa melar */
+    flex: 1;
+}
+    
+    .user-profile {
+        padding: 1.5rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .confirm-candidate {
+        flex-direction: column;
+        text-align: center;
+    }
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+
 
 /* Print styles */
 @media print {
@@ -1179,6 +1134,15 @@ body {
     }
 }
 
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
 /* High contrast mode */
 @media (prefers-contrast: high) {
     .candidate-card {
@@ -1189,166 +1153,8 @@ body {
         border-color: var(--pmr-red);
         border-width: 4px;
     }
+
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
 
-/* Untuk layar sangat kecil (mobile portrait) */
-@media (max-width: 480px) {
-    .header-text h1 {
-        font-size: 28px;
-    }
-    
-    .auth-card {
-        padding: 24px 16px;
-    }
-    
-    .candidate-content {
-        padding: 24px;
-    }
-    
-    .notification {
-        right: 16px;
-        left: 16px;
-        min-width: auto;
-        max-width: none;
-    }
-    
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .vote-button {
-        width: 100%;
-        max-width: 300px;
-    }
-}
 
-/* Untuk tablet dan laptop kecil */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .candidates-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-    }
-}
-
-/* Untuk desktop besar */
-@media (min-width: 1025px) {
-    .candidates-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 32px;
-    }
-    
-    .container {
-        max-width: 1200px;
-    }
-}
-
-/* Admin-specific styles untuk admin.html */
-.admin-header {
-    background: linear-gradient(135deg, var(--pmr-red) 0%, var(--pmr-dark-red) 100%);
-    color: var(--pmr-white);
-    padding: 32px 20px;
-    text-align: center;
-}
-
-.admin-title {
-    font-size: 32px;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-
-.admin-subtitle {
-    font-size: 18px;
-    opacity: 0.9;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 24px;
-    margin-bottom: 32px;
-}
-
-.stat-card {
-    background: var(--pmr-white);
-    padding: 24px;
-    border-radius: 15px;
-    box-shadow: var(--shadow-medium);
-    text-align: center;
-}
-
-.stat-number {
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--pmr-red);
-    margin-bottom: 8px;
-}
-
-.stat-label {
-    color: var(--pmr-gray);
-    font-size: 14px;
-}
-
-.results-container {
-    background: var(--pmr-white);
-    border-radius: 15px;
-    padding: 32px;
-    box-shadow: var(--shadow-medium);
-}
-
-.error-card {
-    background: var(--pmr-white);
-    border-radius: 15px;
-    padding: 48px;
-    text-align: center;
-    box-shadow: var(--shadow-medium);
-}
-
-.error-icon {
-    font-size: 48px;
-    color: var(--warning-yellow);
-    margin-bottom: 16px;
-}
-
-.retry-btn {
-    background: linear-gradient(135deg, var(--pmr-red), var(--pmr-dark-red));
-    color: var(--pmr-white);
-    border: none;
-    padding: 12px 24px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: var(--transition-fast);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.retry-btn:hover {
-    background: linear-gradient(135deg, var(--pmr-dark-red), #991b1b);
-}
-
-/* Responsive adjustments for mobile devices */
-@media (max-width: 768px) {
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .results-container {
-        padding: 24px;
-        margin: 16px;
-    }
-    
-    .admin-header {
-        padding: 24px 16px;
-    }
-}"
